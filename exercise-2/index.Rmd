@@ -1,0 +1,35 @@
+---
+title: "index"
+author: "Hugo Baldner"
+date: "April 27, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+This is a chart
+
+
+```{r}
+library('plotly')
+fruits <- c('banana', 'apple', 'pear', 'orange', 'corn')
+sweetness <- c(10, 40, 38, 68, 76)
+sugar.grams <- c(.2, 2, 2.1, 4, 0)
+data <- data.frame(fruits, sweetness, sugar.grams)
+
+chart <- plot_ly(data, x = ~sweetness, y = ~sugar.grams,
+        mode = 'text', text = ~fruits, textposition = 'middle right',
+        textfont = list(color = '#000000', size = 16)) %>%
+        layout(title = 'Fruits sweetness index and grams ',
+         xaxis = list(title = 'sweetness',
+                      zeroline = TRUE,
+                      range = c(0, 100)),
+         yaxis = list(title = 'Sugar (g)',
+                      range = c(0,6)))
+
+
+```
+`r chart`
